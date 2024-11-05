@@ -33,14 +33,14 @@ class Fabric {
 class Supplier {
 
     public String id, name, contactInfo;
-    List<Fabric> supppliedFabrics = new ArrayList<>();
+    List<Fabric> suppliedFabrics = new ArrayList<>();
 
     public void addFabric(Fabric fabric) {
-
+        suppliedFabrics.add(fabric);
     }
 
     public List<Fabric> getSuppliedFabrics() {
-        return null;
+        return suppliedFabrics;
     }
 }
 
@@ -49,17 +49,31 @@ class Order {
     public String OrderID;
     public double totalAmount;
     public Date orderDate;
+    List<Garment> garments = new ArrayList<>();
 
     public void addGarment(Garment garment) {
-
+        garments.add(garment);
     }
 
     public double calculateTotalAmount() {
-        
+        for (Garment g : garments) {
+            totalAmount += g.price;
+        }
+        return totalAmount;
     }
 
     public void printOrderDetails() {
-
+        System.out.println("-----Order Details-----");
+        for (Garment g : garments) {
+            System.out.println("---- ---- ---- ---- ----");
+            System.out.println("Name: " + g.name);
+            System.out.println("Id: " + g.id);
+            System.out.println("Description: " + g.description);
+            System.out.println("Size: " + g.size);
+            System.out.println("Color: " + g.color);
+            System.out.println("Price: " + g.price);
+            System.out.println("---- ---- ---- ---- ----");
+        }
     }
 }
 
