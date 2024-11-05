@@ -9,11 +9,13 @@ class Garment {
     public int stockQuantity;
 
     public void updateStock(int quantity) {
+        this.stockQuantity = quantity;
 
     }
 
     public double calculateDiscountPrice(double discountPercentage) {
-        return discountPercentage;
+        double discount = price * (discountPercentage / 100);
+        return discount;
     }
 }
 
@@ -23,14 +25,15 @@ class Fabric {
     public double pricePerMeter;
 
     public double calculateCost(double meters) {
-        return meters;
+        double cost = pricePerMeter * meters;
+        return cost;
     }
 }
 
 class Supplier {
 
     public String id, name, contactInfo;
-    List<Fabric> supppliedFabrics;
+    List<Fabric> supppliedFabrics = new ArrayList<>();
 
     public void addFabric(Fabric fabric) {
 
@@ -60,6 +63,20 @@ class Order {
     }
 }
 
+class Customer {
+
+    public String custormeId, name, email, phone;
+
+    public void placeOrder(Order order) {
+
+    }
+
+    public List<Order> viewOrder() {
+
+    }
+}
+
+
 class Inventory {
 
     public List<Garment> garment;
@@ -73,19 +90,6 @@ class Inventory {
     }
 
     public Garment findGarment(String id) {
-
-    }
-}
-
-class Customer {
-
-    public String custormeId, name, email, phone;
-
-    public void placeOrder(Order order) {
-
-    }
-
-    public List<Order> viewOrder() {
 
     }
 }
