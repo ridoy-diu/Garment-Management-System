@@ -80,31 +80,37 @@ class Order {
 class Customer {
 
     public String custormeId, name, email, phone;
+    List<Order> orders = new ArrayList<>();
 
     public void placeOrder(Order order) {
-
+        orders.add(order);
+        order.printOrderDetails();
+        System.out.println("Order is placed");
     }
 
     public List<Order> viewOrder() {
-
+        return orders;
     }
 }
 
-
 class Inventory {
 
-    public List<Garment> garment;
+    public List<Garment> garments;
 
     public void addGarment(Garment garment) {
-
+        garments.add(garment);
     }
 
     public void removeGarment(String id) {
-
+        garments.remove(id);
     }
 
     public Garment findGarment(String id) {
-
+        for (Garment g : garments) {
+            if (g.id == id)
+                return g;
+        }
+        return null;
     }
 }
 
