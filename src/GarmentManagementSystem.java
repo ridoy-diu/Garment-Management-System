@@ -50,6 +50,12 @@ class Supplier {
 
     public String id, name, contactInfo;
 
+    Supplier(String id, String name, String contactInfo) {
+        this.id = id;
+        this.name = name;
+        this.contactInfo = contactInfo;
+    }
+
     List<Fabric> suppliedFabrics = new ArrayList<>();
 
     public void addFabric(Fabric fabric) {
