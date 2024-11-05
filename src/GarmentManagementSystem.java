@@ -33,6 +33,13 @@ class Fabric {
     public String id, type, color;
     public double pricePerMeter;
 
+    Fabric(String id, String type, String color, double pricePerMeter) {
+        this.id = id;
+        this.type = type;
+        this.color = color;
+        this.pricePerMeter = pricePerMeter;
+    } 
+
     public double calculateCost(double meters) {
         double cost = pricePerMeter * meters;
         return cost;
@@ -42,6 +49,7 @@ class Fabric {
 class Supplier {
 
     public String id, name, contactInfo;
+
     List<Fabric> suppliedFabrics = new ArrayList<>();
 
     public void addFabric(Fabric fabric) {
