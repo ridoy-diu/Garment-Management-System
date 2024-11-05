@@ -93,7 +93,7 @@ class Order {
     }
 
     public void printOrderDetails() {
-        System.out.println("-----Order Details-----");
+        System.out.println("----- Order Details -----");
         for (Garment g : garments) {
             System.out.println("---- ---- ---- ---- ----");
             System.out.println("Name: " + g.name);
@@ -155,6 +155,23 @@ class Inventory {
 public class GarmentManagementSystem {
 
     public static void main(String[] args) {
+        displayMenu();
+    }
 
+    static void displayMenu() {
+        System.out.println("----- Garment Management System -----");
+        System.out.println("1. Add Garment to Inventory");
+        System.out.println("2. Remove Garment from Inventory");
+        System.out.println("3. Find Garment by ID");
+        System.out.println("4. Update Garment Stock");
+        System.out.println("5. Place New Order");
+        System.out.println("6. View All Customer Orders");
+        System.out.println("7. Calculate Total Amount of Order");
+        System.out.println("8. Calculate Garment Discount Price");
+        System.out.println("9. Add Fabric to Supplier");
+        System.out.println("10. View Supplier Fabrics");
+        System.out.println("11. Exit");
+        System.out.println("----- ------------------------- -----");
+        System.out.print("Enter your choice: ");
     }
 }
