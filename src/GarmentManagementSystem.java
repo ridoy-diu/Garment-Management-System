@@ -72,6 +72,12 @@ class Order {
     public String OrderID;
     public double totalAmount;
     public Date orderDate;
+
+    Order(String OrderID, Date orderDate) {
+        this.OrderID = OrderID;
+        this.orderDate = orderDate;
+    }
+
     List<Garment> garments = new ArrayList<>();
 
     public void addGarment(Garment garment) {
@@ -79,6 +85,7 @@ class Order {
     }
 
     public double calculateTotalAmount() {
+        totalAmount = 0;
         for (Garment g : garments) {
             totalAmount += g.price;
         }
@@ -103,6 +110,14 @@ class Order {
 class Customer {
 
     public String custormeId, name, email, phone;
+
+    Customer(String customerId, String name, String email, String phone) {
+        this.custormeId = customerId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
     List<Order> orders = new ArrayList<>();
 
     public void placeOrder(Order order) {
