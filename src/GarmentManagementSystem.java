@@ -4,9 +4,18 @@ import java.util.Date;
 
 class Garment {
 
-    public String id, name, description, size, color;
+    public String name, id, description, size, color;
     public double price;
     public int stockQuantity;
+
+    Garment(String name, String id, String description, String size, String color, double price) {
+        this.name = name;
+        this.id = id;
+        this.description = description;
+        this.size = size;
+        this.color = color;
+        this.price = price;
+    }
 
     public void updateStock(int quantity) {
         this.stockQuantity = quantity;
