@@ -156,7 +156,7 @@ class Inventory {
 
     public Garment findGarment(String id) {
         for (Garment g : garments) {
-            if (g.id == id)
+            if (g.id.equals(id))
                 return g;
         }
         System.out.println("Garment not found.");
@@ -166,17 +166,20 @@ class Inventory {
 
 public class GarmentManagementSystem {
 
+    static Inventory inventory = new Inventory();
+    static List<Customer> customers = new ArrayList<>();
+    static List<Supplier> suppliers = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu(sc);
+        sc.close();
     }
 
     static void displayMenu(Scanner sc) {
 
         int choice;
-
         do {
-
             System.out.println("----- Garment Management System -----");
             System.out.println("1. Add Garment to Inventory");
             System.out.println("2. Remove Garment from Inventory");
@@ -193,9 +196,7 @@ public class GarmentManagementSystem {
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             performAction(choice, sc);
-
         } while (choice != 11);
-
     }
 
     static void performAction(int choice, Scanner sc) {
@@ -204,35 +205,56 @@ public class GarmentManagementSystem {
 
         switch (choice) {
             case 1:
+                System.out.print("Enter Garment details (name, id, description, size, color, price): ");
+                String name = sc.nextLine();
+                String id = sc.nextLine();
+                String description = sc.nextLine();
+                String size = sc.nextLine();
+                String color = sc.nextLine();
+                double price = sc.nextDouble();
 
+                Garment garment = new Garment(name, id, description, size, color, price);
+                inventory.addGarment(garment);
                 break;
+
             case 2:
-
+                System.out.print("Enter Garment ID to remove: ");
+                String removingID = sc.nextLine();
+                inventory.removeGarment(removingID);
                 break;
+
             case 3:
 
                 break;
+
             case 4:
 
                 break;
+
             case 5:
 
                 break;
+
             case 6:
 
                 break;
+
             case 7:
 
                 break;
+
             case 8:
 
                 break;
+
             case 9:
 
                 break;
+
             case 10:
 
                 break;
+
             case 11:
                 System.out.println("Exiting the system.");
                 break;
