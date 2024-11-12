@@ -16,16 +16,26 @@ class Garment {
         this.size = size;
         this.color = color;
         this.price = price;
+        this.stockQuantity = 0;
     }
 
     public void updateStock(int quantity) {
         this.stockQuantity = quantity;
-
     }
 
     public double calculateDiscountPrice(double discountPercentage) {
         double discount = price * (discountPercentage / 100);
-        return discount;
+        return price - discount;
+    }
+
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("Description: " + description);
+        System.out.println("Size: " + size);
+        System.out.println("Color: " + color);
+        System.out.println("Price: " + price);
+        System.out.println("Stock Quantity: " + stockQuantity);
     }
 }
 
@@ -50,14 +60,13 @@ class Fabric {
 class Supplier {
 
     public String id, name, contactInfo;
+    private List<Fabric> suppliedFabrics = new ArrayList<>();
 
     Supplier(String id, String name, String contactInfo) {
         this.id = id;
         this.name = name;
         this.contactInfo = contactInfo;
     }
-
-    List<Fabric> suppliedFabrics = new ArrayList<>();
 
     public void addFabric(Fabric fabric) {
         suppliedFabrics.add(fabric);
@@ -73,13 +82,12 @@ class Order {
     public String OrderID;
     public double totalAmount;
     public Date orderDate;
+    List<Garment> garments = new ArrayList<>();
 
     Order(String OrderID, Date orderDate) {
         this.OrderID = OrderID;
         this.orderDate = orderDate;
     }
-
-    List<Garment> garments = new ArrayList<>();
 
     public void addGarment(Garment garment) {
         garments.add(garment);
@@ -96,21 +104,17 @@ class Order {
     public void printOrderDetails() {
         System.out.println("----- Order Details -----");
         for (Garment g : garments) {
-            System.out.println("---- ---- ---- ---- ----");
-            System.out.println("Name: " + g.name);
-            System.out.println("Id: " + g.id);
-            System.out.println("Description: " + g.description);
-            System.out.println("Size: " + g.size);
-            System.out.println("Color: " + g.color);
-            System.out.println("Price: " + g.price);
-            System.out.println("---- ---- ---- ---- ----");
+            g.displayDetails();
+            System.out.println("----- ------------- -----");
         }
+        System.out.println("Total Amount: " + totalAmount);
     }
 }
 
 class Customer {
 
     public String custormeId, name, email, phone;
+    List<Order> orders = new ArrayList<>();
 
     Customer(String customerId, String name, String email, String phone) {
         this.custormeId = customerId;
@@ -119,12 +123,11 @@ class Customer {
         this.phone = phone;
     }
 
-    List<Order> orders = new ArrayList<>();
 
     public void placeOrder(Order order) {
         orders.add(order);
+        System.out.println("Order is placed successfully.");
         order.printOrderDetails();
-        System.out.println("Order is placed");
     }
 
     public List<Order> viewOrder() {
@@ -134,10 +137,11 @@ class Customer {
 
 class Inventory {
 
-    public List<Garment> garments;
+    public List<Garment> garments = new ArrayList<>();
 
     public void addGarment(Garment garment) {
         garments.add(garment);
+        System.out.println("Garment added to inventory.");
     }
 
     public void removeGarment(String id) {
@@ -149,6 +153,7 @@ class Inventory {
             if (g.id == id)
                 return g;
         }
+        System.out.println("Garment not found.");
         return null;
     }
 }
