@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,7 +39,7 @@ class Fabric {
         this.type = type;
         this.color = color;
         this.pricePerMeter = pricePerMeter;
-    } 
+    }
 
     public double calculateCost(double meters) {
         double cost = pricePerMeter * meters;
@@ -155,23 +156,79 @@ class Inventory {
 public class GarmentManagementSystem {
 
     public static void main(String[] args) {
-        displayMenu();
+        Scanner sc = new Scanner(System.in);
+        displayMenu(sc);
     }
 
-    static void displayMenu() {
-        System.out.println("----- Garment Management System -----");
-        System.out.println("1. Add Garment to Inventory");
-        System.out.println("2. Remove Garment from Inventory");
-        System.out.println("3. Find Garment by ID");
-        System.out.println("4. Update Garment Stock");
-        System.out.println("5. Place New Order");
-        System.out.println("6. View All Customer Orders");
-        System.out.println("7. Calculate Total Amount of Order");
-        System.out.println("8. Calculate Garment Discount Price");
-        System.out.println("9. Add Fabric to Supplier");
-        System.out.println("10. View Supplier Fabrics");
-        System.out.println("11. Exit");
-        System.out.println("----- ------------------------- -----");
-        System.out.print("Enter your choice: ");
+    static void displayMenu(Scanner sc) {
+
+        int choice;
+
+        do {
+
+            System.out.println("----- Garment Management System -----");
+            System.out.println("1. Add Garment to Inventory");
+            System.out.println("2. Remove Garment from Inventory");
+            System.out.println("3. Find Garment by ID");
+            System.out.println("4. Update Garment Stock");
+            System.out.println("5. Place New Order");
+            System.out.println("6. View All Customer Orders");
+            System.out.println("7. Calculate Total Amount of Order");
+            System.out.println("8. Calculate Garment Discount Price");
+            System.out.println("9. Add Fabric to Supplier");
+            System.out.println("10. View Supplier Fabrics");
+            System.out.println("11. Exit");
+            System.out.println("----- ------------------------- -----");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            performAction(choice, sc);
+
+        } while (choice != 11);
+
+    }
+
+    static void performAction(int choice, Scanner sc) {
+
+        sc.nextLine();
+
+        switch (choice) {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            case 6:
+
+                break;
+            case 7:
+
+                break;
+            case 8:
+
+                break;
+            case 9:
+
+                break;
+            case 10:
+
+                break;
+            case 11:
+                System.out.println("Exiting the system.");
+                break;
+
+            default:
+                System.out.println("Invalid choice. Try again.");
+                break;
+        }
     }
 }
