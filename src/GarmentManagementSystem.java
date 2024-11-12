@@ -123,7 +123,6 @@ class Customer {
         this.phone = phone;
     }
 
-
     public void placeOrder(Order order) {
         orders.add(order);
         System.out.println("Order is placed successfully.");
@@ -159,7 +158,6 @@ class Inventory {
             if (g.id.equals(id))
                 return g;
         }
-        System.out.println("Garment not found.");
         return null;
     }
 }
@@ -224,11 +222,27 @@ public class GarmentManagementSystem {
                 break;
 
             case 3:
-
+                System.out.print("Enter Garment ID to find: ");
+                String findingID = sc.nextLine();
+                Garment g1 = inventory.findGarment(findingID);
+                if (g1 != null) {
+                    g1.displayDetails();
+                } else {
+                    System.out.println("Garment not found.");
+                }
                 break;
 
             case 4:
-
+                System.out.print("Enter Garment ID to update stock: ");
+                String updatingID = sc.nextLine();
+                Garment g2 = inventory.findGarment(updatingID);
+                if (g2 != null) {
+                    System.out.print("Enter stock quantity: ");
+                    int quantity = sc.nextInt();
+                    g2.updateStock(quantity);
+                } else {
+                    System.out.println("Garment not found.");
+                }
                 break;
 
             case 5:
