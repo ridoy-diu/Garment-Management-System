@@ -145,7 +145,13 @@ class Inventory {
     }
 
     public void removeGarment(String id) {
-        garments.remove(id);
+        Garment g = findGarment(id);
+        if (g != null) {
+            garments.remove(g);
+            System.out.println("Garment removed.");
+        } else {
+            System.out.println("Garment not found.");
+        }
     }
 
     public Garment findGarment(String id) {
