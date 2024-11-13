@@ -167,6 +167,26 @@ public class GarmentManagementSystem {
     static Inventory inventory = new Inventory();
     static List<Customer> customers = new ArrayList<>();
     static List<Supplier> suppliers = new ArrayList<>();
+    static Customer customer;
+
+    static Customer findCustomer(String id) {
+        for (Customer c : customers) {
+            if (c.custormeId.equals(id)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    static Order findOrder(String oId) {
+        for (Customer c : customers) {
+            for (Order o : c.viewOrder()) {
+                if (o.OrderID.equals(oId))
+                    return o;
+            }
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -246,19 +266,55 @@ public class GarmentManagementSystem {
                 break;
 
             case 5:
-
+                System.out.print("Enter Customer ID: ");
+                String custormerID = sc.nextLine();
+                Customer c = findCustomer(custormerID);
+                if (c == null) {
+                    System.out.print("You are a new customer. Enter your name, email and phone: ");
+                    String customerName = sc.nextLine();
+                    String email = sc.nextLine();
+                    String phone = sc.nextLine();
+                    customer = new Customer(custormerID, customerName, email, phone);
+                    customers.add(customer);
+                }
+                System.out.print("Enter Order ID: ");
+                String orderId = sc.nextLine();
+                Order order = new Order(orderId, null);
+                customer.placeOrder(order);
                 break;
 
             case 6:
-
+                System.out.println("---- All Customer Orders ----");
+                for (Customer cu : customers) {
+                    System.out.println("Order for custome: " + cu.name);
+                    cu.viewOrder();
+                }
                 break;
 
             case 7:
-
+                System.out.print("Enter Order ID to calculate total amount: ");
+                String orderID = sc.next();
+                Order odr = findOrder(orderID);
+                if (odr != null) {
+                    double total = odr.calculateTotalAmount();
+                    System.out.println("Total amount for order " + orderID + ": " + total);
+                } else {
+                    System.out.println("Order not found.");
+                }
                 break;
 
             case 8:
-
+                System.out.print("Enter Garment ID to calculate discount price: ");
+                String garmentId = sc.next();
+                Garment g = inventory.findGarment(garmentId);
+                if (g != null) {
+                    System.out.println("Enter discount percentage: ");
+                    double discountPercentage = sc.nextDouble();
+                    double discountPrice = g.calculateDiscountPrice(discountPercentage);
+                    System.out.println("Discounted Price: " + discountPrice);
+                } else {
+                    System.out.println("Garment not found.");
+                }
                 break;
 
             case 9:
