@@ -168,6 +168,8 @@ public class GarmentManagementSystem {
     static List<Customer> customers = new ArrayList<>();
     static List<Supplier> suppliers = new ArrayList<>();
     static Customer customer;
+    static Supplier supplier;
+    static Fabric fabric;
 
     static Customer findCustomer(String id) {
         for (Customer c : customers) {
@@ -183,6 +185,15 @@ public class GarmentManagementSystem {
             for (Order o : c.viewOrder()) {
                 if (o.OrderID.equals(oId))
                     return o;
+            }
+        }
+        return null;
+    }
+
+    static Supplier findSupplier(String sid) {
+        for (Supplier s : suppliers) {
+            if (s.id.equals(sid)) {
+                return s;
             }
         }
         return null;
@@ -207,7 +218,7 @@ public class GarmentManagementSystem {
             System.out.println("6. View All Customer Orders");
             System.out.println("7. Calculate Total Amount of Order");
             System.out.println("8. Calculate Garment Discount Price");
-            System.out.println("9. Add Fabric to Supplier");
+            System.out.println("9. Add Fabric by Supplier");
             System.out.println("10. View Supplier Fabrics");
             System.out.println("11. Exit");
             System.out.println("----- ------------------------- -----");
@@ -318,11 +329,36 @@ public class GarmentManagementSystem {
                 break;
 
             case 9:
-
+                System.out.print("Enter Supplier ID: ");
+                String sID = sc.nextLine();
+                Supplier s = findSupplier(sID);
+                if (s == null) {
+                    System.out.println("You are a new supplier.");
+                    System.out.print("Enter ID, Name and Contact Info: ");
+                    String suppierID = sc.nextLine();
+                    String supplierName = sc.nextLine();
+                    String contactInfo = sc.nextLine();
+                    supplier = new Supplier(suppierID, supplierName, contactInfo);
+                }
+                System.out.print("Enter Fabric details (id, type, color, price per meter): ");
+                String fabricID = sc.nextLine();
+                String fabricType = sc.nextLine();
+                String fabricColor = sc.nextLine();
+                double fabricPricePerMeter = sc.nextDouble();
+                fabric = new Fabric(fabricID, fabricType, fabricColor, fabricPricePerMeter);
+                supplier.addFabric(fabric);
+                System.out.println("Fabric added by suppier.");
                 break;
 
             case 10:
-
+                System.out.print("Enter Supplier ID to view supplied fabrics: ");
+                String supplierSearchId = sc.next();
+                Supplier sup = findSupplier(supplierSearchId);
+                if (sup != null) {
+                    sup.getSuppliedFabrics();
+                } else {
+                    System.out.println("Supplier not found.");
+                }
                 break;
 
             case 11:
